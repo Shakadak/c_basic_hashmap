@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 12:13:08 by npineau           #+#    #+#             */
-/*   Updated: 2017/03/31 12:54:03 by npineau          ###   ########.fr       */
+/*   Updated: 2017/03/31 13:50:19 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_hashmap
 	size_t		size;
 	size_t		capacity;
 	size_t		used;
-	double		lf_limit;
+	double		threshold;
 	t_kv_copy	kv_copy;
 	t_kv_equ	kv_equ;
 	t_kv_hash	kv_hash;
