@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 12:13:08 by npineau           #+#    #+#             */
-/*   Updated: 2017/03/31 14:22:40 by npineau          ###   ########.fr       */
+/*   Updated: 2017/03/31 14:52:54 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,10 @@ typedef struct	s_hashmap
 	t_kv_delete	kv_delete;
 	void		*kvs;
 }				t_hashmap;
+
+t_hashmap	hashmap_new(t_kv_ops kv_ops,
+		double lf_limit,
+		size_t capacity,
+		size_t size);
 
 #endif
