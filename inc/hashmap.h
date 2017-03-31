@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 12:13:08 by npineau           #+#    #+#             */
-/*   Updated: 2017/03/31 13:50:19 by npineau          ###   ########.fr       */
+/*   Updated: 2017/03/31 14:22:40 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,19 @@
 
 # include <stddef.h>
 
-typedef int	(*t_kv_copy)(void*, void*);
-typedef int	(*t_kv_equ)(void*, void*);
+typedef int		(*t_kv_copy)(void*, void*);
+typedef int		(*t_kv_equ)(void*, void*);
 typedef size_t	(*t_kv_hash)(void*, size_t);
+typedef int		(*t_kv_empty)(void*);
+typedef void	(*t_kv_delete)(void*);
 
 typedef struct	s_kv_ops
 {
 	t_kv_copy	kv_copy;
 	t_kv_equ	kv_equ;
+	t_kv_empty	kv_empty;
 	t_kv_hash	kv_hash;
+	t_kv_delete	kv_delete;
 }				t_kv_ops;
 
 typedef struct	s_hashmap
@@ -34,7 +38,9 @@ typedef struct	s_hashmap
 	double		threshold;
 	t_kv_copy	kv_copy;
 	t_kv_equ	kv_equ;
+	t_kv_empty	kv_empty;
 	t_kv_hash	kv_hash;
+	t_kv_delete	kv_delete;
 	void		*kvs;
 }				t_hashmap;
 
