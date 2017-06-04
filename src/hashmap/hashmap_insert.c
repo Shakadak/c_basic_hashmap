@@ -10,9 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hashmap.h"
+#include "inc/hashmap.h"
 
 int	hashmap_insert(t_hashmap *map, void *kv)
 {
+	size_t	i;
+	size_t	j;
+
+	j = 0;
+	i = map->kv_hash(kv, map->capacity) * map->size;
+	while (j < map->capacity)
+	{
+		if (map->kv_empty(map->kvs + i))
+		{
+			map->kv_copy(map->kvs + i, kv);
+			map->used += 1;
+			return (1);
+		}
+		else if (map->kv_equ(map->kvs + i, kv))
+		{
+			map->kv_delete(map->kvs + i);
+			map->kv_copy(map->kvs + i, kv);
+			return (1);
+		}
+		j++;
+		i = (i + map->size) % (map->capacity * map->size);
+	}
 	return (0);
 }
