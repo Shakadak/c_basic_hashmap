@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 12:13:08 by npineau           #+#    #+#             */
-/*   Updated: 2017/03/31 14:52:54 by npineau          ###   ########.fr       */
+/*   Updated: 2017/06/07 12:51:19 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include <stddef.h>
 
-typedef int		(*t_kv_copy)(void*, void*);
+typedef int		(*t_kv_copy)(void* src, void* dst);
 typedef int		(*t_kv_equ)(void*, void*);
-typedef size_t	(*t_kv_hash)(void*, size_t);
+typedef size_t	(*t_kv_hash)(void*, size_t capacity);
 typedef int		(*t_kv_empty)(void*);
 typedef void	(*t_kv_delete)(void*);
 
@@ -48,5 +48,7 @@ t_hashmap	hashmap_new(t_kv_ops kv_ops,
 		double lf_limit,
 		size_t capacity,
 		size_t size);
+int	hashmap_insert(t_hashmap *map, void *kv);
+int	hashmap_search(t_hashmap *map, void *kv, void *kv_out);
 
 #endif
