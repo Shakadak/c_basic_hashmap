@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 12:52:46 by npineau           #+#    #+#             */
-/*   Updated: 2017/06/07 12:51:33 by npineau          ###   ########.fr       */
+/*   Updated: 2017/06/07 14:38:07 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_hashmap	hashmap_new(t_kv_ops kv_ops,
 {
 	t_hashmap	new;
 
+	new.flags = malloc(capacity);
+	static_bzero(new.flags, capacity);
 	new.kvs = malloc(size * capacity);
 	static_bzero(new.kvs, size * capacity);
 	new.threshold = lf_limit;

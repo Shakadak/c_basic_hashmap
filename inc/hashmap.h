@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 12:13:08 by npineau           #+#    #+#             */
-/*   Updated: 2017/06/07 12:51:19 by npineau          ###   ########.fr       */
+/*   Updated: 2017/06/07 14:49:42 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define HASHMAP_H
 
 # include <stddef.h>
+
+enum			e_kv_flags
+{
+	KV_EMPTY,
+	KV_OCCUPIED,
+	KV_DELETED
+};
 
 typedef int		(*t_kv_copy)(void* src, void* dst);
 typedef int		(*t_kv_equ)(void*, void*);
@@ -41,14 +48,15 @@ typedef struct	s_hashmap
 	t_kv_empty	kv_empty;
 	t_kv_hash	kv_hash;
 	t_kv_delete	kv_delete;
+	char		*flags;
 	void		*kvs;
 }				t_hashmap;
 
-t_hashmap	hashmap_new(t_kv_ops kv_ops,
+t_hashmap		hashmap_new(t_kv_ops kv_ops,
 		double lf_limit,
 		size_t capacity,
 		size_t size);
-int	hashmap_insert(t_hashmap *map, void *kv);
-int	hashmap_search(t_hashmap *map, void *kv, void *kv_out);
+int				hashmap_insert(t_hashmap *map, void *kv);
+int				hashmap_search(t_hashmap *map, void *kv, void *kv_out);
 
 #endif
