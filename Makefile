@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:=	liblphm.a
+NAME		:=	libbhm.a
 
 ### DIRECTORIES ###
 
@@ -19,16 +19,16 @@ DIROBJ		:=	obj
 DIRTST		:=	test
 DIRLIB		:=	lib
 DIRBIN		:=	bin
-DIRMEM		:=	$(DIRSRC)/mem
-DIRDHM		:=	$(DIRSRC)/hashmap
+#DIRMEM		:=	$(DIRSRC)/mem
+DIRHMAP		:=	$(DIRSRC)/hashmap
 DIRINC		:=	inc
 
 ### FILES ###
 
 ### FILES: SOURCES ###
 
-include $(DIRMEM)/src.mk
-include $(DIRHM)/src.mk
+#include $(DIRMEM)/src.mk
+include $(DIRHMAP)/src.mk
 
 ### FILES: PATHS ###
 
