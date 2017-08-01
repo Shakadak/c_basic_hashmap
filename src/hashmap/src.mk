@@ -1,6 +1,7 @@
 HMAP	:=	hashmap_delete.c \
 			hashmap_insert.c \
 			hashmap_new.c \
+			hashmap_resize.c \
 			hashmap_search.c
 
 OBJ	:= $(OBJ) $(HMAP:.c=.o)
