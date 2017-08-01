@@ -34,7 +34,7 @@ t_hashmap	hashmap_new(t_kv_ops kv_ops,
 {
 	t_hashmap	new;
 
-	new.flags = malloc(capacity);
+	new.flags = malloc(capacity * sizeof(t_kv_flags));
 	static_bzero(new.flags, capacity);
 	new.kvs = malloc(size * capacity);
 	static_bzero(new.kvs, size * capacity);

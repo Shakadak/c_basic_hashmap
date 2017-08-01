@@ -15,12 +15,12 @@
 
 # include <stddef.h>
 
-enum			e_kv_flags
+typedef enum	e_kv_flags
 {
 	KV_EMPTY,
 	KV_OCCUPIED,
 	KV_DELETED
-};
+}				t_kv_flags;
 
 typedef int		(*t_kv_copy)(void* src, void* dst);
 typedef int		(*t_kv_equ)(void*, void*);
@@ -48,7 +48,7 @@ typedef struct	s_hashmap
 	t_kv_empty	kv_empty;
 	t_kv_hash	kv_hash;
 	t_kv_delete	kv_delete;
-	char		*flags;
+	t_kv_flags	*flags;
 	void		*kvs;
 }				t_hashmap;
 
