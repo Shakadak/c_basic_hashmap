@@ -15,6 +15,25 @@ static void	static_bzero(void *src, size_t len)
 	}
 }
 
+static t_hashmap	*transfer(t_hashmap *map,
+		size_t capacity,
+		t_kv_flags *flags,
+		void *kvs)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < capacity)
+	{
+		if (flags[i] == KV_OCCUPIED)
+		{
+			hashmap_insert(map, kvs + i * map->size); 
+			map->kv_delete(kvs + i * map->size);
+		}
+	}
+	return map;
+}
+
 t_hashmap	*hashmap_resize(size_t capacity, t_hashmap *map)
 {
 	t_kv_flags	*old_flags;
@@ -29,15 +48,8 @@ t_hashmap	*hashmap_resize(size_t capacity, t_hashmap *map)
 	map->kvs = malloc(map->size * capacity);
 	static_bzero(map->kvs, map->size * capacity);
 	map->capacity = capacity;
-	while (old_capacity > 0)
-	{
-		old_capacity -= 1;
-		if (old_flags[old_capacity] == KV_OCCUPIED)
-		{
-			hashmap_insert(map, old_kvs + old_capacity * map->size); 
-			map->kv_delete(old_kvs + old_capacity * map->size);
-		}
-	}
+	map->used = 0;
+	transfer(map, old_capacity, old_flags, old_kvs);
 	free(old_kvs);
 	free(old_flags);
 	return (map);
