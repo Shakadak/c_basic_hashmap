@@ -56,7 +56,9 @@ t_hashmap		hashmap_new(t_kv_ops kv_ops,
 		double lf_limit,
 		size_t capacity,
 		size_t size);
-int				hashmap_insert(t_hashmap *map, void *kv);
-int				hashmap_search(t_hashmap *map, void *kv, void *kv_out);
+int				hashmap_insert(void *kv, t_hashmap *map);
+int				hashmap_search(void *kv, t_hashmap *map, void *kv_out);
+int				hashmap_delete(void *kv, t_hashmap *map);
+t_hashmap		*hashmap_resize(size_t capacity, t_hashmap *map);
 
 #endif

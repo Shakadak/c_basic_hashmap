@@ -12,7 +12,7 @@
 
 #include "inc/hashmap.h"
 
-int	hashmap_insert(t_hashmap *map, void *kv)
+static int	hashmap_insert_go(void *kv, t_hashmap *map)
 {
 	size_t	i;
 	size_t	j;
@@ -38,4 +38,13 @@ int	hashmap_insert(t_hashmap *map, void *kv)
 		i = (i + 1) % map->capacity;
 	}
 	return (0);
+}
+
+int			hashmap_insert(void *kv, t_hashmap *map)
+{
+	if (map->used + 1 > (unsigned int)(map->capacity * map->threshold))
+	{
+		map = hashmap_resize(map->capacity * 2, map);
+	}
+	return hashmap_insert_go(kv, map);
 }

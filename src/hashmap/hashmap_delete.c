@@ -12,7 +12,7 @@
 
 #include "inc/hashmap.h"
 
-int	hashmap_delete(t_hashmap *map, void *kv)
+int	hashmap_delete(void *kv, t_hashmap *map)
 {
 	size_t	i;
 	size_t	j;

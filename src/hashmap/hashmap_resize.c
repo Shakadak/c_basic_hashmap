@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "inc/hashmap.h"
 
-static void	static_bzero(void *src, size_t len)
+static void			static_bzero(void *src, size_t len)
 {
 	unsigned char	*mem;
 	size_t			i;
@@ -34,7 +34,7 @@ static t_hashmap	*transfer(t_hashmap *map,
 	return map;
 }
 
-t_hashmap	*hashmap_resize(size_t capacity, t_hashmap *map)
+t_hashmap			*hashmap_resize(size_t capacity, t_hashmap *map)
 {
 	t_kv_flags	*old_flags;
 	void		*old_kvs;
