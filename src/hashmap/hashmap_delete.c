@@ -6,13 +6,13 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 14:56:19 by npineau           #+#    #+#             */
-/*   Updated: 2017/06/07 15:01:35 by npineau          ###   ########.fr       */
+/*   Updated: 2017/09/04 14:08:27 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/hashmap.h"
 
-int	hashmap_delete(void *kv, t_hashmap *map)
+static int	hashmap_delete_go(void *kv, t_hashmap *map)
 {
 	size_t	i;
 	size_t	j;
@@ -30,6 +30,7 @@ int	hashmap_delete(void *kv, t_hashmap *map)
 		{
 			map->kv_delete(map->kvs + i * map->size);
 			map->flags[i] = KV_DELETED;
+			map->used -= 1;
 			return (1);
 		}
 		j++;
@@ -37,3 +38,10 @@ int	hashmap_delete(void *kv, t_hashmap *map)
 	}
 	return (0);
 }
+
+int			hashmap_delete(void *kv, t_hashmap *map)
+{
+	int	ret;
+
+	ret = hashmap_insert_go(kv, map);
+	return (ret)
