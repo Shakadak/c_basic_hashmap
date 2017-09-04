@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 15:04:04 by npineau           #+#    #+#             */
-/*   Updated: 2017/06/07 15:01:56 by npineau          ###   ########.fr       */
+/*   Updated: 2017/09/04 13:50:51 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ int			hashmap_insert(void *kv, t_hashmap *map)
 	{
 		map = hashmap_resize(map->capacity * 2, map);
 	}
-	return hashmap_insert_go(kv, map);
+	return (hashmap_insert_go(kv, map));
 }

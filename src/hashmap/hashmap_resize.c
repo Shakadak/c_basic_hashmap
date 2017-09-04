@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hashmap_resize.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/04 13:50:08 by npineau           #+#    #+#             */
+/*   Updated: 2017/09/04 13:51:28 by npineau          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "inc/hashmap.h"
 
@@ -27,11 +39,11 @@ static t_hashmap	*transfer(t_hashmap *map,
 	{
 		if (flags[i] == KV_OCCUPIED)
 		{
-			hashmap_insert(map, kvs + i * map->size); 
+			hashmap_insert(map, kvs + i * map->size);
 			map->kv_delete(kvs + i * map->size);
 		}
 	}
-	return map;
+	return (map);
 }
 
 t_hashmap			*hashmap_resize(size_t capacity, t_hashmap *map)
