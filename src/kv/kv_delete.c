@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hashmap_search.c                                   :+:      :+:    :+:   */
+/*   kv_delete.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/31 15:30:11 by npineau           #+#    #+#             */
-/*   Updated: 2017/06/07 14:50:37 by npineau          ###   ########.fr       */
+/*   Created: 2017/06/07 14:56:19 by npineau           #+#    #+#             */
+/*   Updated: 2017/09/26 10:58:23 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/hashmap.h"
+#include "inc/kv.h"
 
-int	hashmap_search(t_hashmap *map, void *kv, void *kv_out)
+static int	kv_delete_go(void *kv, t_kv *map)
 {
 	size_t	i;
 	size_t	j;
@@ -28,11 +28,29 @@ int	hashmap_search(t_hashmap *map, void *kv, void *kv_out)
 		else if (map->flags[i] == KV_OCCUPIED
 				&& map->kv_equ(map->kvs + i * map->size, kv))
 		{
-			map->kv_copy(map->kvs + i * map->size, kv_out);
+			map->kv_delete(map->kvs + i * map->size);
+			map->flags[i] = KV_DELETED;
+			map->used -= 1;
 			return (1);
 		}
 		j++;
 		i = (i + 1) % map->capacity;
 	}
 	return (0);
+}
+
+int			kv_delete(void *kv, t_kv *map)
+{
+	int	ret;
+
+	ret = kv_delete_go(kv, map);
+	if (ret == 1)
+	{
+		if (map->used < (size_t)(map->capacity * (map->threshold / 2)))
+		{
+			map = kv_resize(map->capacity / 2, map);
+		}
+	}
+		
+	return (ret);
 }

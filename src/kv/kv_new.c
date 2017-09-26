@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hashmap_new.c                                      :+:      :+:    :+:   */
+/*   kv_new.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 12:52:46 by npineau           #+#    #+#             */
-/*   Updated: 2017/06/07 14:38:07 by npineau          ###   ########.fr       */
+/*   Updated: 2017/09/26 10:58:17 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "inc/hashmap.h"
+#include "inc/kv.h"
 
 static void	static_bzero(void *src, size_t len)
 {
@@ -27,12 +27,12 @@ static void	static_bzero(void *src, size_t len)
 	}
 }
 
-t_hashmap	hashmap_new(t_kv_ops kv_ops,
+t_kv	kv_new(t_kv_ops kv_ops,
 		double lf_limit,
 		size_t capacity,
 		size_t size)
 {
-	t_hashmap	new;
+	t_kv	new;
 
 	new.flags = malloc(capacity * sizeof(t_kv_flags));
 	static_bzero(new.flags, capacity);

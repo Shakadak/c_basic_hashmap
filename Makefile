@@ -6,11 +6,11 @@
 #    By: npineau <npineau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 12:15:41 by npineau           #+#    #+#              #
-#    Updated: 2015/05/21 20:34:00 by npineau          ###   ########.fr        #
+#    Updated: 2017/09/26 10:51:43 by npineau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:=	libbhm.a
+NAME		:=	libkv.a
 
 ### DIRECTORIES ###
 
@@ -20,7 +20,7 @@ DIRTST		:=	test
 DIRLIB		:=	lib
 DIRBIN		:=	bin
 #DIRMEM		:=	$(DIRSRC)/mem
-DIRHMAP		:=	$(DIRSRC)/hashmap
+DIRHMAP		:=	$(DIRSRC)/kv
 DIRINC		:=	inc
 
 ### FILES ###

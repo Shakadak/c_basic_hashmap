@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hashmap_resize.c                                   :+:      :+:    :+:   */
+/*   kv_resize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 13:50:08 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/04 13:51:28 by npineau          ###   ########.fr       */
+/*   Updated: 2017/09/26 10:58:56 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "inc/hashmap.h"
+#include "inc/kv.h"
 
 static void			static_bzero(void *src, size_t len)
 {
@@ -27,7 +27,7 @@ static void			static_bzero(void *src, size_t len)
 	}
 }
 
-static t_hashmap	*transfer(t_hashmap *map,
+static t_kv	*transfer(t_kv *map,
 		size_t capacity,
 		t_kv_flags *flags,
 		void *kvs)
@@ -39,14 +39,14 @@ static t_hashmap	*transfer(t_hashmap *map,
 	{
 		if (flags[i] == KV_OCCUPIED)
 		{
-			hashmap_insert(map, kvs + i * map->size);
+			kv_insert(map, kvs + i * map->size);
 			map->kv_delete(kvs + i * map->size);
 		}
 	}
 	return (map);
 }
 
-t_hashmap			*hashmap_resize(size_t capacity, t_hashmap *map)
+t_kv			*kv_resize(size_t capacity, t_kv *map)
 {
 	t_kv_flags	*old_flags;
 	void		*old_kvs;

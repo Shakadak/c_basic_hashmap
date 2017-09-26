@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hashmap.h                                          :+:      :+:    :+:   */
+/*   kv.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 12:13:08 by npineau           #+#    #+#             */
-/*   Updated: 2017/06/07 14:49:42 by npineau          ###   ########.fr       */
+/*   Updated: 2017/09/26 10:57:33 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HASHMAP_H
-# define HASHMAP_H
+#ifndef KV_H
+# define KV_H
 
 # include <stddef.h>
 
@@ -37,7 +37,7 @@ typedef struct	s_kv_ops
 	t_kv_delete	kv_delete;
 }				t_kv_ops;
 
-typedef struct	s_hashmap
+typedef struct	s_kv
 {
 	size_t		size;
 	size_t		capacity;
@@ -50,15 +50,15 @@ typedef struct	s_hashmap
 	t_kv_delete	kv_delete;
 	t_kv_flags	*flags;
 	void		*kvs;
-}				t_hashmap;
+}				t_kv;
 
-t_hashmap		hashmap_new(t_kv_ops kv_ops,
+t_kv			kv_new(t_kv_ops kv_ops,
 		double lf_limit,
 		size_t capacity,
 		size_t size);
-int				hashmap_insert(void *kv, t_hashmap *map);
-int				hashmap_search(void *kv, t_hashmap *map, void *kv_out);
-int				hashmap_delete(void *kv, t_hashmap *map);
-t_hashmap		*hashmap_resize(size_t capacity, t_hashmap *map);
+int				kv_insert(void *kv, t_kv *map);
+int				kv_search(t_kv *map, void *kv, void *kv_out);
+int				kv_delete(void *kv, t_kv *map);
+t_kv		*kv_resize(size_t capacity, t_kv *map);
 
 #endif

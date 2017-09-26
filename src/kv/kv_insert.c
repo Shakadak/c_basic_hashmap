@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hashmap_insert.c                                   :+:      :+:    :+:   */
+/*   kv_insert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 15:04:04 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/04 13:50:51 by npineau          ###   ########.fr       */
+/*   Updated: 2017/09/26 10:57:56 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/hashmap.h"
+#include "inc/kv.h"
 
-static int	hashmap_insert_go(void *kv, t_hashmap *map)
+static int	kv_insert_go(void *kv, t_kv *map)
 {
 	size_t	i;
 	size_t	j;
@@ -40,11 +40,11 @@ static int	hashmap_insert_go(void *kv, t_hashmap *map)
 	return (0);
 }
 
-int			hashmap_insert(void *kv, t_hashmap *map)
+int			kv_insert(void *kv, t_kv *map)
 {
 	if (map->used + 1 > (unsigned int)(map->capacity * map->threshold))
 	{
-		map = hashmap_resize(map->capacity * 2, map);
+		map = kv_resize(map->capacity * 2, map);
 	}
-	return (hashmap_insert_go(kv, map));
+	return (kv_insert_go(kv, map));
 }
