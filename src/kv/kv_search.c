@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 15:30:11 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/26 10:55:37 by npineau          ###   ########.fr       */
+/*   Updated: 2017/09/26 15:45:01 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	kv_search(t_kv *map, void *kv, void *kv_out)
 			map->kv_copy(map->kvs + i * map->size, kv_out);
 			return (1);
 		}
-		j++;
+		j += 1;
 		i = (i + 1) % map->capacity;
 	}
 	return (0);
