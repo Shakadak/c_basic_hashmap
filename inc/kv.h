@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 12:13:08 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/28 11:47:01 by npineau          ###   ########.fr       */
+/*   Updated: 2017/09/28 11:56:06 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int				kvs_insert(void *kv, t_kv *map);
 int				kvs_search(t_kv *map, void *kv, void *kv_out);
 int				kvs_delete(void *kv, t_kv *map);
 t_kv			*kvs_resize(size_t capacity, t_kv *map);
+char			*kvs_to_str(char *(*as_str)(void *), t_kv *kvs, size_t *len_out);
 
 #endif
