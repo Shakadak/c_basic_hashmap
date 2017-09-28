@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   kv_new.c                                      :+:      :+:    :+:   */
+/*   kvs_new.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 12:52:46 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/26 10:58:17 by npineau          ###   ########.fr       */
+/*   Updated: 2017/09/28 11:41:13 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	static_bzero(void *src, size_t len)
 	}
 }
 
-t_kv	kv_new(t_kv_ops kv_ops,
+t_kv		kvs_new(t_kv_ops kv_ops,
 		double lf_limit,
 		size_t capacity,
 		size_t size)

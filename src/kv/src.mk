@@ -1,8 +1,9 @@
-HMAP	:=	kv_delete.c \
-			kv_insert.c \
-			kv_new.c \
-			kv_resize.c \
-			kv_search.c
+HMAP	:=	kvs_delete.c \
+			kvs_insert.c \
+			kvs_new.c \
+			kvs_resize.c \
+			kvs_search.c \
+			kvs_to_str.c
 
 OBJ	:= $(OBJ) $(HMAP:.c=.o)
 
