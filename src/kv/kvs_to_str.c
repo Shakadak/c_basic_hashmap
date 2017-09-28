@@ -6,14 +6,14 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 11:03:26 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/28 11:48:18 by npineau          ###   ########.fr       */
+/*   Updated: 2017/09/28 12:27:32 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "inc/kv.h"
 
-static size_t	strlen(char *str)
+static size_t	mstrlen(char *str)
 {
 	size_t len;
 
@@ -25,7 +25,7 @@ static size_t	strlen(char *str)
 	return (len);
 }
 
-static char		*stpcpy(char *out, const char *in)
+static char		*mstpcpy(char *out, const char *in)
 {
 	size_t	i;
 
@@ -50,20 +50,20 @@ static char		*join_with(char *glue, char **strs, size_t *len_out)
 	capacity = 0;
 	while (strs[i] != NULL)
 	{
-		capacity += strlen(strs[i]);
+		capacity += mstrlen(strs[i]);
 		i += 1;
 	}
-	capacity += (i - 1) * strlen(glue);
+	capacity += (i - 1) * mstrlen(glue);
 	str = malloc(sizeof(char) * capacity);
 	*len_out = capacity;
 	i = 0;
 	end = str;
 	while (strs[i] != NULL)
 	{
-		end = stpcpy(end, strs[i]);
+		end = mstpcpy(end, strs[i]);
 		i += 1;
 		if (strs[i] != NULL)
-			end = stpcpy(end, glue);
+			end = mstpcpy(end, glue);
 	}
 	return (str);
 }
