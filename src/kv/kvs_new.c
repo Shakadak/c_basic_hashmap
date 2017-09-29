@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 12:52:46 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/28 11:41:13 by npineau          ###   ########.fr       */
+/*   Updated: 2017/09/29 14:31:18 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ t_kv		kvs_new(t_kv_ops kv_ops,
 	new.used = 0;
 	new.kv_copy = kv_ops.kv_copy;
 	new.kv_equ = kv_ops.kv_equ;
-	new.kv_empty = kv_ops.kv_empty;
 	new.kv_hash = kv_ops.kv_hash;
 	new.kv_delete = kv_ops.kv_delete;
 	return (new);

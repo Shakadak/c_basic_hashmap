@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 11:03:26 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/28 12:27:32 by npineau          ###   ########.fr       */
+/*   Updated: 2017/09/29 14:43:51 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static char		*join_with(char *glue, char **strs, size_t *len_out)
 	return (str);
 }
 
-char			*kvs_to_str(char *(*as_str)(void *), t_kv *kvs, size_t *len_out)
+char			*kvs_to_str(t_kv_to_str to_str, t_kv *kvs, size_t *len_out)
 {
 	char	**kv_as_str;
 	size_t	i;
@@ -85,7 +85,7 @@ char			*kvs_to_str(char *(*as_str)(void *), t_kv *kvs, size_t *len_out)
 	{
 		if (kvs->flags[i] == KV_OCCUPIED)
 		{
-			kv_as_str[j] = as_str(kvs->kvs + kvs->size * i);
+			kv_as_str[j] = to_str(kvs->kvs + kvs->size * i);
 			j += 1;
 		}
 		i += 1;
