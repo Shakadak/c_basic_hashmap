@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   skv_equ.c                                          :+:      :+:    :+:   */
+/*   skv_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/28 13:44:15 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/29 10:53:59 by npineau          ###   ########.fr       */
+/*   Created: 2017/09/29 10:33:33 by npineau           #+#    #+#             */
+/*   Updated: 2017/09/29 10:54:47 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include "inc/kv.h"
 #include "test/skv.h"
 
-static int	mstrequ(const char *l, const char *r)
+static char	*skv_to_str(t_skv *skv)
 {
-	size_t	i;
+	char	*str;
 
-	i = 0;
-	while (l[i] != '\0' && r[i] != '\0')
-	{
-		if (l[i] != r[i])
-		{
-			return (0);
-		}
-		i += 1;
-	}
-	return (l[i] == r[i]);
+	return (str);
 }
 
-int			skv_equ(t_skv *l, t_skv *r)
+ssize_t		skv_print(int fd, t_kv *skvs)
 {
-	return (mstrequ(l->k, r->k));
+	size_t	len;
+	char	*buffer;
+
+	buffer = kvs_to_str((char *(*)(void *))skv_to_str, skvs, &len);
+	return (write(fd, buffer, len));
 }

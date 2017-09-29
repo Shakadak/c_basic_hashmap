@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 12:22:12 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/28 12:45:47 by npineau          ###   ########.fr       */
+/*   Updated: 2017/09/29 10:55:40 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char		*mstpcpy(char *out, const char *in)
 	return (&(out[i]));
 }
 
-void	*str_kv_new(char *k, char *v)
+void			*str_kv_new(char *k, char *v)
 {
 	t_skv	*skv;
 	size_t	kv_size;

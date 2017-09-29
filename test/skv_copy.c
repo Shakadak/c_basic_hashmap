@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 13:40:28 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/28 13:42:38 by npineau          ###   ########.fr       */
+/*   Updated: 2017/09/29 10:53:33 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 t_skv	*skv_copy(t_skv *skv)
 {
-	return skv_new(skv->k, skv->v);
+	return (skv_new(skv->k, skv->v));
 }

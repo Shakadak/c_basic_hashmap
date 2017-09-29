@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   skv_equ.c                                          :+:      :+:    :+:   */
+/*   skv_hash.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/28 13:44:15 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/29 10:53:59 by npineau          ###   ########.fr       */
+/*   Created: 2017/09/29 10:01:34 by npineau           #+#    #+#             */
+/*   Updated: 2017/09/29 10:54:17 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "test/skv.h"
 
-static int	mstrequ(const char *l, const char *r)
+size_t	skv_hash(t_skv *skv, size_t capacity)
 {
-	size_t	i;
+	uint64_t	hash;
+	uint8_t		*data;
+	size_t		i;
 
+	hash = 0xcbf29ce484222325;
+	data = (uint8_t *)skv->k;
 	i = 0;
-	while (l[i] != '\0' && r[i] != '\0')
+	while (data[i] != 0)
 	{
-		if (l[i] != r[i])
-		{
-			return (0);
-		}
+		hash = hash ^ data[i];
+		hash = hash * 0x100000001b3;
 		i += 1;
 	}
-	return (l[i] == r[i]);
-}
-
-int			skv_equ(t_skv *l, t_skv *r)
-{
-	return (mstrequ(l->k, r->k));
+	return (hash % capacity);
 }
