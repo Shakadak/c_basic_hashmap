@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 14:56:19 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/28 11:45:02 by npineau          ###   ########.fr       */
+/*   Updated: 2017/10/03 13:48:05 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static int	kvs_delete_go(void *kv, t_kv *map)
 			return (0);
 		}
 		else if (map->flags[i] == KV_OCCUPIED
-				&& map->kv_equ(map->kvs + i * map->size, kv))
+				&& map->kv_equ((char *)map->kvs + i * map->size, kv))
 		{
-			map->kv_delete(map->kvs + i * map->size);
+			map->kv_delete((char *)map->kvs + i * map->size);
 			map->flags[i] = KV_DELETED;
 			map->used -= 1;
 			return (1);

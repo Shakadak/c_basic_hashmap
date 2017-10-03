@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 10:33:33 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/29 14:43:49 by npineau          ###   ########.fr       */
+/*   Updated: 2017/10/03 13:54:51 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,35 @@ static char		*mstpcpy(char *out, const char *in)
 	return (&(out[i]));
 }
 
-static char	*skv_to_str(t_skv *skv)
+static char		*skv_to_str(t_skv *skv)
 {
 	char	*str;
+	int		k;
+	int		v;
 
-	str = malloc(sizeof(char) * (mstrlen(skv->k) + 2 + mstrlen(skv->v) + 1));
-	mstpcpy(mstpcpy(mstpcpy(str, skv->k), ": "), skv->v);
+	k = skv->k != NULL;
+	v = skv->v != NULL;
+	str = malloc(sizeof(char)
+			* (1 + (k ? mstrlen(skv->k) : 4) + 1
+				+ 2 + 1 + (v ? mstrlen(skv->v) : 4) + 1 + 1));
+	mstpcpy(mstpcpy(mstpcpy(mstpcpy(mstpcpy(mstpcpy(mstpcpy(str,
+									(k ? "\"" : "<")),
+								(k ? skv->k : "NULL")),
+							(k ? "\"" : ">")),
+						": "),
+					(v ? "\"" : "<")),
+				(v ? skv->v : "NULL")),
+			(v ? "\"" : ">"));
 	return (str);
 }
 
-ssize_t		skv_print(int fd, t_kv *skvs)
+ssize_t			skv_print(int fd, t_kv *skvs)
 {
 	size_t	len;
 	char	*buffer;
+	ssize_t	ret;
 
 	buffer = kvs_to_str((t_kv_to_str)skv_to_str, skvs, &len);
-	return (write(fd, buffer, len));
+	ret = write(fd, buffer, len);
+	return (ret + write(fd, "\n", 1));
 }

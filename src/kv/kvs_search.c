@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 15:30:11 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/28 11:40:19 by npineau          ###   ########.fr       */
+/*   Updated: 2017/10/03 13:47:15 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	kvs_search(t_kv *map, void *kv, void *kv_out)
 			return (0);
 		}
 		else if (map->flags[i] == KV_OCCUPIED
-				&& map->kv_equ(map->kvs + i * map->size, kv))
+				&& map->kv_equ((char *)map->kvs + i * map->size, kv))
 		{
-			map->kv_copy(map->kvs + i * map->size, kv_out);
+			map->kv_copy((char *)map->kvs + i * map->size, kv_out);
 			return (1);
 		}
 		j += 1;

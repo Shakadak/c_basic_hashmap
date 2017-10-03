@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 11:03:26 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/29 14:43:51 by npineau          ###   ########.fr       */
+/*   Updated: 2017/10/03 13:50:43 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char			*kvs_to_str(t_kv_to_str to_str, t_kv *kvs, size_t *len_out)
 	size_t	i;
 	size_t	j;
 
-	kv_as_str = malloc(sizeof(char **) * kvs->used);
+	kv_as_str = malloc(sizeof(char *) * (kvs->used + 1));
 	if (kv_as_str == NULL)
 	{
 		return (0);
@@ -85,10 +85,11 @@ char			*kvs_to_str(t_kv_to_str to_str, t_kv *kvs, size_t *len_out)
 	{
 		if (kvs->flags[i] == KV_OCCUPIED)
 		{
-			kv_as_str[j] = to_str(kvs->kvs + kvs->size * i);
+			kv_as_str[j] = to_str((char *)kvs->kvs + kvs->size * i);
 			j += 1;
 		}
 		i += 1;
 	}
+	kv_as_str[j] = NULL;
 	return (join_with(",\n", kv_as_str, len_out));
 }

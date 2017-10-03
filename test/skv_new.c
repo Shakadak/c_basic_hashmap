@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_kv_new.c                                       :+:      :+:    :+:   */
+/*   skv_new.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 12:22:12 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/29 10:55:40 by npineau          ###   ########.fr       */
+/*   Updated: 2017/10/03 11:56:40 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,9 @@ static char		*mstrdup(const char *str)
 	return (dup);
 }
 
-static char		*mstpcpy(char *out, const char *in)
-{
-	size_t	i;
-
-	i = 0;
-	while (in[i] != '\0')
-	{
-		out[i] = in[i];
-		i += 1;
-	}
-	out[i] = '\0';
-	return (&(out[i]));
-}
-
-void			*str_kv_new(char *k, char *v)
+void			*skv_new(char *k, char *v)
 {
 	t_skv	*skv;
-	size_t	kv_size;
 
 	skv = malloc(sizeof(t_skv));
 	skv->k = mstrdup(k);

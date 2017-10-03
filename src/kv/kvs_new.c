@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 12:52:46 by npineau           #+#    #+#             */
-/*   Updated: 2017/09/29 14:31:18 by npineau          ###   ########.fr       */
+/*   Updated: 2017/10/03 10:35:04 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ static void	static_bzero(void *src, size_t len)
 		mem = (unsigned char *)src;
 		i = 0;
 		while (i < len)
+		{
 			mem[i] = 0;
+			i += 1;
+		}
 	}
 }
 
