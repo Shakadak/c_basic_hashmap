@@ -1,4 +1,5 @@
 HMAP	:=	kvs_delete.c \
+			kvs_extract.c \
 			kvs_insert.c \
 			kvs_new.c \
 			kvs_resize.c \
