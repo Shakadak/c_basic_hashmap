@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 10:33:33 by npineau           #+#    #+#             */
-/*   Updated: 2017/10/03 13:54:51 by npineau          ###   ########.fr       */
+/*   Updated: 2017/10/17 11:44:43 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ ssize_t			skv_print(int fd, t_kv *skvs)
 	ssize_t	ret;
 
 	buffer = kvs_to_str((t_kv_to_str)skv_to_str, skvs, &len);
-	ret = write(fd, buffer, len);
+	ret = write(fd, "---------\n", 10);
+	ret += write(fd, buffer, len);
 	return (ret + write(fd, "\n", 1));
 }
