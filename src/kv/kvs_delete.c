@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 14:56:19 by npineau           #+#    #+#             */
-/*   Updated: 2017/10/03 13:48:05 by npineau          ###   ########.fr       */
+/*   Updated: 2017/10/17 11:31:29 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int			kvs_delete(void *kv, t_kv *map)
 	ret = kvs_delete_go(kv, map);
 	if (ret == 1)
 	{
-		if (map->used < (size_t)(map->capacity * (map->threshold / 2)))
+		if (map->used < (size_t)(map->capacity * (map->threshold / 2))
+				&& map->capacity >= 32)
 		{
 			map = kvs_resize(map->capacity / 2, map);
 		}

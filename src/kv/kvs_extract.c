@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/10 13:06:34 by npineau           #+#    #+#             */
-/*   Updated: 2017/10/10 13:09:34 by npineau          ###   ########.fr       */
+/*   Updated: 2017/10/17 11:31:53 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int			kvs_extract(void *kv, t_kv *map, void *out)
 	ret = kvs_extract_go(kv, map, out);
 	if (ret == 1)
 	{
-		if (map->used < (size_t)(map->capacity * (map->threshold / 2)))
+		if (map->used < (size_t)(map->capacity * (map->threshold / 2))
+				&& map->capacity >= 32)
 		{
 			map = kvs_resize(map->capacity / 2, map);
 		}
